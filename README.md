@@ -1,20 +1,10 @@
 # page-rank
 
-FIXME: description
+Proyecto acádemico para aprender y entender un poco el algoritmo de [page-rank](http://infolab.stanford.edu/~backrub/google.html) utilizado por google para el ranquear las páginas web en su motor de búsqueda.
 
 ## Installation
 
-Download from http://example.com/FIXME.
-
-## Usage
-
-FIXME: explanation
-
-    $ java -jar page-rank-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
+    $ git clone git@github.com:earayo/page-rank.git
 
 ## Examples
 
@@ -23,10 +13,6 @@ FIXME: listing of options this app accepts.
 ### Bugs
 
 ...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
 
 ## License
 
