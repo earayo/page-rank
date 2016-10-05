@@ -3,9 +3,11 @@
 
 (def criterio-parada 0.000001)
 
-(def matriz-grafo [[0 1 1]
-                   [1 0 1]
-                   [0 1 0]])
+(def  vector-paginas ["Oracle" "StackOverflow" "Wikipedia"])
+
+(def matriz-grafo [[0.0 1.0 1.0]
+                   [1.0 0.0 1.0]
+                   [0.0 1.0 0.0]])
 
 (defn valor-absoluto [n]
   (if (neg? n)
@@ -47,6 +49,8 @@
   "I don't do a whole lot ... yet."
   [& args]
   (let [matriz-est (matriz-estocastica matriz-grafo)
-        vect-ep (vector-equiprobable matriz-grafo)]
-    (println "Page Rank => ")
-    (println (obtener-vector-resultante matriz-est  vect-ep))))
+        vect-ep (vector-equiprobable matriz-grafo)
+        vector-resultante (obtener-vector-resultante matriz-est  vect-ep)
+        map-vector-res (map (fn [elemento valor] {:pagina elemento :page-rank valor}) vector-paginas vector-resultante)
+        map-vector-pagerank-ordenado (sort-by :page-rank >  map-vector-res)]
+    (map println map-vector-pagerank-ordenado)))
