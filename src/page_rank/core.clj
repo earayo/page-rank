@@ -1,4 +1,5 @@
 (ns page-rank.core
+   (:require [clojure.core.matrix :as matrix])
   (:gen-class))
 
 (def criterio-parada 0.000001)
@@ -6,7 +7,7 @@
 (def  vector-paginas ["Oracle" "StackOverflow" "Wikipedia"])
 
 (def matriz-grafo [[0.0 1.0 1.0]
-                   [1.0 0.0 1.0]
+                   [1.0 0.0 1.0] 
                    [0.0 1.0 0.0]])
 
 (defn valor-absoluto [n]
@@ -31,15 +32,12 @@
   (let [contador-filas (count matriz)]
     (vec (repeat contador-filas (/ 1 contador-filas)))))
 
-(defn multiplicar-matriz-por-vector [matriz vi]
-  (reduce (fn [new-vect elements] (conj new-vect (reduce + (map * vi elements)))) [] matriz))
-
 (defn obtener-vector-resultante [matriz v0]
   (loop [v1 v0
-         v2 (multiplicar-matriz-por-vector matriz v1)]
+         v2 (matrix/mmul matriz v1)]
     (if (parar? v1 v2)
       v2
-      (recur v2 (multiplicar-matriz-por-vector matriz v2)))))
+      (recur v2 (matrix/mmul matriz v2)))))
 
 (def matriz-est (matriz-estocastica matriz-grafo))
 (def vect-ep (vector-equiprobable matriz-grafo))
